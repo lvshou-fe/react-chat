@@ -43,14 +43,14 @@ class ContentLeft extends Component {
         notification(errorMessage, 'error');
       });
       window.socket.on('reconnect', (attemptNumber) => {
-        console.log('reconnect successfully. attemptNumber ==>', attemptNumber);
+        console.log('reconnect successfully. attemptNumber =>', attemptNumber, 'time=>', new Date().toLocaleString());
       });
       window.socket.on('disconnect', (reason) => {
-        // window.socket.open();
-        console.log('disconnect but socket open it again. disconnect reason ==>', reason);
+        window.socket.open();
+        console.log('disconnect but socket open it again. disconnect reason =>', reason, 'time=>', new Date().toLocaleString());
       });
       window.socket.on('reconnect_error', (error) => {
-        console.log('reconnect_error. error ==>', error);
+        console.log('reconnect_error. error =>', error, 'time=>', new Date().toLocaleString());
       });
       window.socket.emit('login', userInfo.user_id);
       window.socket.emit('initMessage', userInfo.user_id, (allMessage) => {
